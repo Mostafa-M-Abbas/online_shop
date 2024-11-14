@@ -1,0 +1,30 @@
+<%-include('parts/header.ejs') %>
+<%-include('parts/navbar.ejs') %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>My Orders</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let order of orders) { %>
+                        <tr>
+                            <td><%= order.id %></td>
+                            <td>$<%= order.total.toFixed(2) %></td>
+                            <td><%= order.status %></td>
+                            <td><%= order.date %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+</div>
+
+
+<%-include('parts/footer.ejs') %>

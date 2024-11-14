@@ -1,0 +1,57 @@
+<%-include('parts/header.ejs') %>
+<%-include('parts/navbar.ejs') %>
+
+<div class="container my-4">
+    <!-- Add category filter -->
+    <div class="row mb-4">
+        <div class="col">
+            <div class="btn-group">
+                <!-- <a href="/" class="btn btn-outline-primary <%= currentCategory === 'all' ? 'active' : '' %>">All</a> -->
+                <a href="/?category=electronics" class="btn btn-outline-primary <%= currentCategory === 'electronics' ? 'active' : '' %>">Electronics</a>
+                <a href="/?category=clothing" class="btn btn-outline-primary <%= currentCategory === 'clothing' ? 'active' : '' %>">Clothing</a>
+                <!-- Add more categories as needed -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <% if (products && products.length > 0) { %>
+            <% for(let product of products) { %>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card mb-4 h-100">
+                        <img
+                            src="<%= product.image %>"
+                            class="card-img-top"
+                            alt="<%= product.name %>"
+                            style="object-fit: cover; height: 200px;"
+                        />
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><%= product.name %></h5>
+                            <p class="card-text flex-grow-1"><%= product.description %></p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                        Add to Cart
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        View
+                                    </button>
+                                </div>
+                                <strong class="text-primary">$<%= product.price.toFixed(2) %></strong>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Category: <%= product.category %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } else { %>
+            <div class="col-12 text-center">
+                <p>No products found.</p>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%-include('parts/footer.ejs') %>

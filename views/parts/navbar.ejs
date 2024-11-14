@@ -1,0 +1,46 @@
+<!-- views/parts/navbar.ejs -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <div class="container">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/">Home</a>
+          </li>
+          
+          <% if (isAuth) { %>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/cart">Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/orders">Orders</a>
+            </li>
+            <% if (isAdmin) { %>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/admin/add">Add Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/admin/orders">Manage Orders</a>
+              </li>
+            <% } %>
+            <li class="nav-item">
+              <form action="/logout" method="POST" class="d-inline">
+                <button type="submit" class="nav-link text-white btn btn-link">Logout</button>
+              </form>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/signup">Signup</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
